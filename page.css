@@ -152,3 +152,8 @@ body[data-sent="true"] .sent { display: block; }
   display: flex; justify-content: space-between; margin: .35rem 0 0;
   font-size: .8rem; color: var(--ink-soft);
 }
+
+.form__hint { display: block; margin-top: .2rem; font-size: .82rem; color: var(--ink-faint); }
+
+.form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form button[disabled] { opacity: .6; cursor: progress; }

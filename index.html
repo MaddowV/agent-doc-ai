@@ -335,8 +335,9 @@
       <p class="eyebrow">Nächster Schritt</p>
       <h2 style="font-size:var(--text-h2);max-width:18ch">Lass dir einen Demo-Report bauen.</h2>
       <p class="lead measure" style="margin-top:1.2rem">
-        Kostenlos und unverbindlich. Wir bauen ihn zu deinem Thema, damit du siehst,
-        wie dein Produkt aussehen würde — statt dass wir es dir beschreiben.
+        Kostenlos und unverbindlich. Wir bauen ihn <strong>von Hand</strong> zu deinem Thema —
+        dafür brauchen wir ein paar Tage. Dann siehst du, wie dein Produkt wirklich aussehen
+        würde, statt dass wir es dir beschreiben.
       </p>
 
       <form class="form" id="demo-form" novalidate>
@@ -372,6 +373,18 @@
           <input type="checkbox" name="verkauft" value="ja">
           <span>Ich verkaufe bereits digitale Produkte an meine Liste.</span>
         </label>
+        <label class="form__check">
+          <input type="checkbox" name="werbung" value="ja">
+          <span>Ihr dürft mir gelegentlich Hinweise zu Agent Doc AI schicken.
+            <span class="form__hint">Freiwillig und jederzeit widerrufbar. Ohne Haken bekommst
+            du ausschließlich die Antwort auf diese Anfrage — am Absenden ändert sich nichts.</span>
+          </span>
+        </label>
+        <div class="form__trap" aria-hidden="true">
+          <label for="f-firma">Firma</label>
+          <input type="text" id="f-firma" name="firma" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="form__error" id="form-err" role="alert"></p>
         <button class="btn btn--primary" type="submit">Demo-Report anfordern</button>
         <p class="form__note">
           <abbr title="Pflichtfeld">*</abbr> Pflichtfeld — alles andere ist freiwillig und hilft

@@ -182,12 +182,31 @@
   alles();
   bereit = true;
 
-  // TODO: an GoHighLevel anbinden — bis dahin nur Zustandswechsel, es wird nichts gesendet.
-  document.getElementById("demo-form").addEventListener("submit", function (e) {
+  var form    = document.getElementById("demo-form");
+  var fehler  = document.getElementById("form-err");
+  var knopf   = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    if (!this.checkValidity()) { this.reportValidity(); return; }
-    document.body.setAttribute("data-sent", "true");
-    document.getElementById("anfordern").scrollIntoView({ block: "start" });
-    document.getElementById("sent").focus({ preventScroll: true });
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    fehler.textContent = "";
+    knopf.disabled = true;
+    knopf.textContent = "Wird gesendet …";
+
+    fetch("/api/anfrage", { method: "POST", body: new URLSearchParams(new FormData(form)) })
+      .then(function (antwort) {
+        if (!antwort.ok && antwort.status !== 204) throw new Error("Status " + antwort.status);
+        document.body.setAttribute("data-sent", "true");
+        document.getElementById("anfordern").scrollIntoView({ block: "start" });
+        document.getElementById("sent").focus({ preventScroll: true });
+      })
+      .catch(function () {
+        // Niemals „Angekommen" zeigen, wenn nichts angekommen ist.
+        fehler.textContent = "Das hat gerade nicht geklappt. Schreib uns bitte direkt an " +
+                             "hallo@agentdocai.com — wir melden uns genauso zuverlässig.";
+        knopf.disabled = false;
+        knopf.textContent = "Demo-Report anfordern";
+      });
   });
 })();
