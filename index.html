@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Doc AI — Dein Wissen als Report-Produkt</title>
+<meta name="description" content="Wir machen aus der Methode von Coaches ein personalisiertes Report-Produkt: im eigenen Branding, in der eigenen Sprache, vollautomatisch ausgeliefert.">
+<link rel="preload" href="fonts/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<a class="skip-link" href="#top">Zum Inhalt springen</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="wordmark" href="#top"><b>Agent Doc</b> <span>AI</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="#rechnung">Die Rechnung</a>
+      <a href="#dauerbetrieb">Dein Jahr</a>
+      <a href="#leistung">Was du bekommst</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#preis">Preis</a>
+    </nav>
+    <a class="btn btn--primary" href="#anfordern">Demo-Report anfordern</a>
+  </div>
+</header>
+
+<main id="top" tabindex="-1">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Report-Produkte für Coaches</p>
+      <h1>Dein Wissen verkauft auch dann, wenn du <em>nicht dabei</em> bist.</h1>
+      <p class="lead">
+        Wir machen aus deiner Methode ein personalisiertes Report-Produkt — in deinem Branding,
+        in deiner Sprache, in zehn Minuten beim Kunden. Du schickst uns einen Webhook.
+        Den Rest machen wir.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#anfordern">Demo-Report anfordern</a>
+        <a class="btn btn--ghost" href="#rechnung">Erst rechnen</a>
+      </div>
+      <p class="hero__note" style="margin-top:1.6rem">
+        Gedacht für Coaches mit mindestens 2.500 Abonnenten und einem laufenden Funnel.
+      </p>
+    </div>
+  </section>
+
+  <section id="rechnung" class="rule-top" style="padding-top:clamp(3rem,2rem+3vw,5rem)">
+    <div class="wrap">
+      <p class="eyebrow">Die Rechnung</p>
+      <h2 style="font-size:var(--text-h2);max-width:18ch">Rechnet es sich für dich? Schieb die Regler.</h2>
+      <p class="lead measure" style="margin-top:1.2rem;margin-bottom:2.6rem">
+        Keine Hochrechnung mit Fantasiezahlen — nur deine Liste, dein Preis, eine realistische Kaufquote.
+      </p>
+
+      <div class="calc">
+        <div class="calc__grid">
+          <div class="calc__inputs">
+
+            <div class="field">
+              <div class="field__head">
+                <label class="field__label" for="liste">Deine E-Mail-Liste</label>
+                <output class="field__value" id="liste-out" aria-live="off" for="liste">5.000</output>
+              </div>
+              <input type="range" id="liste" min="1000" max="30000" step="500" value="5000">
+            </div>
+
+            <div class="field">
+              <div class="field__head">
+                <label class="field__label" for="quote">Kaufquote beim Launch</label>
+                <output class="field__value" id="quote-out" aria-live="off" for="quote">2,0 %</output>
+              </div>
+              <input type="range" id="quote" min="5" max="50" step="1" value="20">
+            </div>
+
+            <div class="field">
+              <div class="field__head">
+                <span class="field__label">Preis deines Reports</span>
+              </div>
+              <div class="segmented" role="radiogroup" aria-label="Preis deines Reports">
+                <input type="radio" name="preis" id="p39" value="39"><label for="p39">39 €</label>
+                <input type="radio" name="preis" id="p49" value="49" checked><label for="p49">49 €</label>
+                <input type="radio" name="preis" id="p59" value="59"><label for="p59">59 €</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="calc__out">
+            <div class="out__headline">
+              <span class="out__key">Das bleibt bei dir — Launch</span>
+              <span class="out__val out__val--big" id="netto">3.500 €</span>
+            </div>
+
+            <div class="out__row">
+              <span class="out__key">Verkaufte Reports</span>
+              <span class="out__val" id="stueck">100</span>
+            </div>
+            <div class="out__row">
+              <span class="out__key">Dein Umsatz</span>
+              <span class="out__val" id="brutto">4.900 €</span>
+            </div>
+            <div class="out__row">
+              <span class="out__key">Unsere Gebühr <span id="staffel" class="out__val--sub" style="font-weight:400"></span></span>
+              <span class="out__val out__val--sub" id="gebuehr">− 1.400 €</span>
+            </div>
+
+            <p class="breakeven" id="setupbox"></p>
+            <p class="sr-only" id="live-launch" role="status" aria-atomic="true"></p>
+
+            <p class="calc__disclaimer">
+              Gerechnet mit 2.000 € Setup. Unsere Staffel gilt für alle Reports eines Zeitraums:
+              19 € pro Report, ab 50 Reports 14 €, ab 200 Reports 10 €. Die Kaufquote ist dein
+              Wert — Launches an eine warme Liste liegen erfahrungsgemäß zwischen 1 und 3 %.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dauerbetrieb" class="rule-top">
+    <div class="wrap">
+      <p class="eyebrow">Dein Jahr</p>
+      <h2 style="font-size:var(--text-h2);max-width:19ch">Der Launch ist der Anfang. Interessant wird das zweite Jahr.</h2>
+      <p class="lead measure" style="margin-top:1.2rem;margin-bottom:2.6rem">
+        Ein Report verkauft sich weiter, solange dein Funnel läuft. Und jeder Käufer
+        hat gerade bewiesen, dass er bereit ist, Geld für deine Arbeit auszugeben.
+      </p>
+
+      <div class="calc">
+        <div class="calc__grid">
+          <div class="calc__inputs">
+
+            <div class="field">
+              <div class="field__head">
+                <label class="field__label" for="promonat">Reports pro Monat</label>
+                <output class="field__value" id="promonat-out" aria-live="off" for="promonat">40</output>
+              </div>
+              <input type="range" id="promonat" min="5" max="150" step="5" value="40">
+            </div>
+
+            <div class="field">
+              <div class="field__head">
+                <label class="field__label" for="folge">Von 100 Report-Käufern buchen danach</label>
+                <output class="field__value" id="folge-out" aria-live="off" for="folge">3</output>
+              </div>
+              <input type="range" id="folge" min="0" max="10" step="1" value="3">
+            </div>
+
+            <div class="field">
+              <div class="field__head">
+                <label class="field__label" for="paket">Preis deines Coaching-Pakets</label>
+                <output class="field__value" id="paket-out" aria-live="off" for="paket">1.500 €</output>
+              </div>
+              <input type="range" id="paket" min="500" max="3000" step="250" value="1500">
+            </div>
+
+            <p class="calc__disclaimer" style="margin-top:.2rem">
+              Report-Preis wie oben: <strong id="preis-echo">49 €</strong>.
+              Folgequote und Paketpreis sind <em>deine</em> Annahmen — wir kennen deine
+              Zahlen nicht und versprechen sie dir auch nicht.
+            </p>
+
+          </div>
+
+          <div class="calc__out">
+            <div class="out__headline">
+              <span class="out__key">Das bleibt bei dir — zwölf Monate</span>
+              <span class="out__val out__val--big" id="jahr">36.000 €</span>
+            </div>
+
+            <div class="out__row">
+              <span class="out__key">Gewinn aus Reports</span>
+              <span class="out__val" id="j-reports">14.400 €</span>
+            </div>
+            <div class="out__row">
+              <span class="out__key">Coaching-Buchungen daraus</span>
+              <span class="out__val out__val--sub" id="j-buchungen">14</span>
+            </div>
+            <div class="out__row">
+              <span class="out__key">Umsatz aus diesen Buchungen</span>
+              <span class="out__val" id="j-coaching">21.600 €</span>
+            </div>
+
+            <figure class="chart">
+              <figcaption>So wächst es über das Jahr — aufsummiert</figcaption>
+              <p class="chart__peak" id="chart-peak" aria-hidden="true">36.000 €</p>
+              <svg id="stack" viewBox="0 0 360 102" role="img" focusable="false" preserveAspectRatio="none">
+                <g id="stack-bars"></g>
+                <line class="chart__base" x1="0" y1="100.5" x2="360" y2="100.5"></line>
+              </svg>
+              <p class="chart__axis" aria-hidden="true"><span>Monat 1</span><span>Monat 12</span></p>
+            </figure>
+
+            <p class="breakeven" id="jahrbox"></p>
+            <p class="sr-only" id="live-jahr" role="status" aria-atomic="true"></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="calc__disclaimer" style="margin-top:1.4rem;max-width:52rem">
+        Vom Umsatz deiner Coaching-Pakete sehen wir keinen Cent — wir rechnen nur
+        die ausgelieferten Reports ab. Die Zahl steht hier, weil sie zu deiner
+        Entscheidung gehört, nicht zu unserer Rechnung.
+      </p>
+    </div>
+  </section>
+
+  <section id="leistung" class="rule-top">
+    <div class="wrap">
+      <p class="eyebrow">Was du bekommst</p>
+      <h2 style="font-size:var(--text-h2);max-width:20ch">Ein Produkt, das nach dir klingt. Nicht nach einer Maschine.</h2>
+
+      <div class="deliver">
+        <div class="deliver__item">
+          <h3>Deine Methode</h3>
+          <p>Wir bauen aus deinen Transkripten, Unterlagen und Texten eine Wissensbasis. Der Report argumentiert so, wie du argumentierst — nicht so, wie ein Sprachmodell von sich aus schreiben würde.</p>
+        </div>
+        <div class="deliver__item">
+          <h3>Deine Tonalität</h3>
+          <p>Deine Ansprache, dein Rhythmus, deine Wortwahl. Wenn deine Leute den Report lesen, sollen sie dich hören.</p>
+        </div>
+        <div class="deliver__item">
+          <h3>Dein Branding</h3>
+          <p>PDF in deinem Erscheinungsbild, ausgeliefert über deine Subdomain. Unser Name steht nirgends drauf.</p>
+        </div>
+        <div class="deliver__item">
+          <h3>Zehn Minuten</h3>
+          <p>Vom Kauf bis zum fertigen Report im Postfach. Kein Warten, kein „kommt in 24 Stunden", keine Handarbeit bei dir.</p>
+        </div>
+        <div class="deliver__item">
+          <h3>Optional dazu</h3>
+          <p>Eine E-Mail-Sequenz im Anschluss und ein Kalendereintrag zur Terminbuchung — die Brücke vom Report in dein Coaching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf" class="rule-top">
+    <div class="wrap">
+      <p class="eyebrow">Ablauf</p>
+      <h2 style="font-size:var(--text-h2);max-width:17ch">Du schickst uns einen Webhook. Das ist dein Teil.</h2>
+
+      <ol class="steps" role="list">
+        <li>
+          <div>
+            <h3>Wir bauen dein Report-Produkt</h3>
+            <p>Gemeinsam legen wir fest, was der Report beantwortet und wie er klingt. Wir bauen deine Wissensbasis auf, entwerfen das Layout in deinem CI und richten die Strecke ein.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Dein Shop meldet den Kauf</h3>
+            <p>Ein Webhook aus deinem bestehenden Shop, mehr brauchen wir nicht. Du änderst nichts an deinem Verkaufsprozess.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Der Kunde bekommt seinen Report</h3>
+            <p>Personalisiert, in deinem Branding, innerhalb von Minuten. Du erfährst davon nur, weil Geld auf deinem Konto landet.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="rule-top" style="padding-block:clamp(3rem,2rem+3vw,5rem)">
+    <div class="wrap">
+      <p class="eyebrow">Beleg</p>
+      <div class="placeholder">
+        <h3>Platzhalter — wartet auf Katjas Zusage</h3>
+        <p>
+          Hier steht der Referenzfall: die laufende Report-Maschine im Echtbetrieb, mit Zahlen
+          (seit wann, wie viele Reports, Laufzeit) und zwei, drei anonymisierten Seiten aus
+          einem echten Report.
+        </p>
+        <p>
+          <strong>Nicht veröffentlichen, bevor die Zustimmung schriftlich vorliegt.</strong>
+          Ohne diesen Abschnitt ist die Seite eine Behauptung — er ist der wichtigste Baustein.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="preis" class="rule-top">
+    <div class="wrap">
+      <p class="eyebrow">Preis</p>
+      <h2 style="font-size:var(--text-h2);max-width:20ch">Verkaufst du nichts, zahlst du nichts.</h2>
+      <p class="lead measure" style="margin-top:1.2rem">
+        Keine Monatsgebühr, keine Mindestlaufzeit. Nach dem Setup zahlst du nur für Reports,
+        die tatsächlich ausgeliefert wurden.
+      </p>
+
+      <div class="price">
+        <div class="price__cell">
+          <h3>Einmalig</h3>
+          <span class="price__amount">ab 2.000 €</span>
+          <p>Setup: Report-Konzeption, Wissensbasis, Layout in deinem CI, Einrichtung der Strecke. Enthält zwölf Monate Betrieb.</p>
+        </div>
+        <div class="price__cell">
+          <h3>Laufend</h3>
+          <span class="price__amount">19 – 10 €</span>
+          <p>Pro ausgeliefertem Report, gestaffelt nach Menge. Monatliche Abrechnung mit Aufstellung.</p>
+        </div>
+        <div class="price__cell">
+          <h3>Rückgaben</h3>
+          <span class="price__amount">0 €</span>
+          <p>Gibt ein Kunde zurück, erstatten wir unsere Gebühr. Ohne Diskussion.</p>
+        </div>
+      </div>
+      <p class="hero__note" style="margin-top:1.2rem">Alle Preise verstehen sich zzgl. Umsatzsteuer.</p>
+    </div>
+  </section>
+
+  <section class="notfor">
+    <div class="wrap">
+      <p class="eyebrow">Ehrlichkeit vorweg</p>
+      <h2 style="font-size:var(--text-h2);max-width:16ch">Wann du uns <em class="mark">nicht</em> buchen solltest.</h2>
+      <ul role="list">
+        <li>Deine Liste ist kleiner als 2.500 Abonnenten. Dann trägt der Launch das Setup nicht, und wir hätten beide nichts davon.</li>
+        <li>Du hast eine Liste, aber keinen laufenden Funnel. Ein Report verdient sich im Dauerbetrieb, nicht am Launch-Tag.</li>
+        <li>Du willst ein Werkzeug, das du selbst bedienst. Dafür gibt es gute Software für dreißig Euro im Monat — wir sind das Gegenteil davon.</li>
+        <li>Deine Methode steht noch nicht. Wir können Wissen verpacken, aber nicht erfinden.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="anfordern" class="rule-top">
+    <div class="wrap">
+      <p class="eyebrow">Nächster Schritt</p>
+      <h2 style="font-size:var(--text-h2);max-width:18ch">Lass dir einen Demo-Report bauen.</h2>
+      <p class="lead measure" style="margin-top:1.2rem">
+        Kostenlos und unverbindlich. Wir bauen ihn zu deinem Thema, damit du siehst,
+        wie dein Produkt aussehen würde — statt dass wir es dir beschreiben.
+      </p>
+
+      <form class="form" id="demo-form" novalidate>
+        <div class="form__row">
+          <label for="f-name">Name</label>
+          <input type="text" id="f-name" name="name" autocomplete="name">
+        </div>
+        <div class="form__row">
+          <label for="f-mail">E-Mail <abbr title="Pflichtfeld" aria-label="Pflichtfeld">*</abbr></label>
+          <input type="email" id="f-mail" name="email" autocomplete="email" required aria-required="true" aria-describedby="f-mail-err">
+          <p class="form__error" id="f-mail-err"></p>
+        </div>
+        <div class="form__row">
+          <label for="f-site">Deine Website</label>
+          <input type="url" id="f-site" name="website" placeholder="https://" autocomplete="url" aria-describedby="f-site-err">
+          <p class="form__error" id="f-site-err"></p>
+        </div>
+        <div class="form__row">
+          <label for="f-liste">Größe deiner E-Mail-Liste</label>
+          <select id="f-liste" name="liste">
+            <option value="">Bitte wählen</option>
+            <option>unter 2.500</option>
+            <option>2.500 – 5.000</option>
+            <option>5.000 – 15.000</option>
+            <option>über 15.000</option>
+          </select>
+        </div>
+        <div class="form__row">
+          <label for="f-thema">Deine Methode oder dein Thema</label>
+          <textarea id="f-thema" name="thema" placeholder="Zwei, drei Sätze reichen."></textarea>
+        </div>
+        <label class="form__check">
+          <input type="checkbox" name="verkauft" value="ja">
+          <span>Ich verkaufe bereits digitale Produkte an meine Liste.</span>
+        </label>
+        <button class="btn btn--primary" type="submit">Demo-Report anfordern</button>
+        <p class="form__note">
+          <abbr title="Pflichtfeld">*</abbr> Pflichtfeld — alles andere ist freiwillig und hilft
+          uns nur, den Demo-Report näher an dein Thema zu bauen. Wir melden uns innerhalb von
+          zwei Werktagen, nutzen deine Angaben ausschließlich zur Beantwortung dieser Anfrage
+          und tragen dich in keinen Verteiler ein. Einzelheiten in der
+          <a href="datenschutz.html">Datenschutzerklärung</a>.
+        </p>
+      </form>
+
+      <div class="sent" id="sent" tabindex="-1" role="group"
+           aria-labelledby="sent-title" aria-describedby="sent-text">
+        <h3 id="sent-title">Angekommen.</h3>
+        <p id="sent-text">Wir melden uns innerhalb von zwei Werktagen bei dir — mit Rückfragen oder direkt mit dem Demo-Report.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p>© 2026 Agent Doc AI</p>
+    <nav aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="mailto:hallo@agentdocai.com">hallo@agentdocai.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Vorläufig: Die Seite ist noch nicht öffentlich.
+# Vor dem Livegang auf "Allow: /" umstellen.
+User-agent: *
+Disallow: /
