@@ -20,7 +20,7 @@ import re
 import sys
 
 WURZEL = pathlib.Path(__file__).resolve().parent.parent
-SEITEN = ["index.html", "impressum.html", "datenschutz.html"]
+SEITEN = ["index.html", "impressum.html", "datenschutz.html", "doi.html"]
 MITTEL = ["base.css", "page.css", "app.js"]
 
 
