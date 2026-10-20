@@ -10,7 +10,7 @@ Keine Abhängigkeiten, kein Build-Schritt, keine externen Ressourcen.
 | `base.css` | Gemeinsame Grundlage: Schriften, Gestaltungswerte, Kopf- und Fußzeile |
 | `page.css`, `app.js` | Nur für die Startseite |
 | `fonts/` | Inter und Newsreader, selbst ausgeliefert (SIL OFL 1.1) |
-| `deploy/` | nginx-Konfiguration und Compose-Projekt für den VPS |
+| `deploy/` | nginx-Konfiguration, Compose-Projekt und `stempel.py` |
 | `supabase/functions/anfrage/` | Annahmestelle für das Formular (Edge Function, Irland) |
 
 ## Grundsätze
@@ -24,7 +24,15 @@ Keine Abhängigkeiten, kein Build-Schritt, keine externen Ressourcen.
 
 ## Ausrollen
 
-**Website:** über die Hostinger-API, kein SSH nötig — siehe `deploy/docker-compose.yml`.
+**Website:** vor jedem Commit die Fingerabdrücke neu setzen, sonst sehen
+wiederkehrende Besucher die alten Dateien:
+
+```bash
+python3 deploy/stempel.py
+```
+
+Danach committen, pushen und das Compose-Projekt über die Hostinger-API
+aktualisieren — kein SSH nötig, siehe `deploy/docker-compose.yml`.
 
 **Formular-Annahme:**
 
