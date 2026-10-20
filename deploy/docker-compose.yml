@@ -4,7 +4,9 @@
 #
 # Benötigte Umgebungsvariablen:
 #   GITHUB_REPO   z. B. MaddowV/agent-doc-ai
-#   GITHUB_TOKEN  Lesezugriff auf das Repo (bei öffentlichem Repo nicht nötig)
+#   SITE_RULE     Traefik-Regel, z. B. Host(`probe.agentdocai.com`)
+#                 oder Host(`agentdocai.com`) || Host(`www.agentdocai.com`)
+#   GITHUB_TOKEN  nur nötig, solange das Repo privat ist
 
 services:
   web:
@@ -30,7 +32,7 @@ services:
       - "8080"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.agentdoc.rule=Host(`agentdocai.com`) || Host(`www.agentdocai.com`)"
+      - "traefik.http.routers.agentdoc.rule=${SITE_RULE}"
       - "traefik.http.routers.agentdoc.entrypoints=websecure"
       - "traefik.http.routers.agentdoc.tls.certresolver=letsencrypt"
       - "traefik.http.services.agentdoc.loadbalancer.server.port=8080"
