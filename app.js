@@ -182,6 +182,10 @@
   alles();
   bereit = true;
 
+  // Annahmestelle: Supabase Edge Function in Irland. Sie prüft, drosselt und
+  // legt den Kontakt im CRM an — gespeichert wird hier nichts.
+  var ANNAHME = "https://fyuyuqlsjmpyoszhligp.supabase.co/functions/v1/anfrage";
+
   var form    = document.getElementById("demo-form");
   var fehler  = document.getElementById("form-err");
   var knopf   = form.querySelector('button[type="submit"]');
@@ -194,7 +198,7 @@
     knopf.disabled = true;
     knopf.textContent = "Wird gesendet …";
 
-    fetch("/api/anfrage", { method: "POST", body: new URLSearchParams(new FormData(form)) })
+    fetch(ANNAHME, { method: "POST", body: new URLSearchParams(new FormData(form)) })
       .then(function (antwort) {
         if (!antwort.ok && antwort.status !== 204) throw new Error("Status " + antwort.status);
         document.body.setAttribute("data-sent", "true");

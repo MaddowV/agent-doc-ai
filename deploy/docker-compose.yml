@@ -1,14 +1,14 @@
-# Agent Doc AI — Website plus Annahmestelle, hinter dem vorhandenen Traefik auf VPS 1709062.
+# Agent Doc AI — statische Website hinter dem vorhandenen Traefik auf VPS 1709062.
 # Ausrollen über die Hostinger-API (vps_docker_create), kein SSH nötig.
 #
 # Umgebungsvariablen:
-#   SITE_RULE        Traefik-Regel, z. B. Host(`probe.agentdocai.com`)
-#                    oder Host(`agentdocai.com`) || Host(`www.agentdocai.com`)
-#   GHL_WEBHOOK_URL  Inbound-Webhook des GoHighLevel-Workflows
+#   SITE_RULE  Traefik-Regel, z. B. Host(`probe.agentdocai.com`)
+#              oder Host(`agentdocai.com`) || Host(`www.agentdocai.com`)
 #
-# Bewusst KEIN API-Schlüssel auf dem Server: Die Hostinger-API gibt Umgebungs-
-# variablen im Klartext heraus. Eine Webhook-Adresse erlaubt im schlimmsten Fall,
-# Kontakte anzulegen — ein API-Schlüssel würde das ganze CRM öffnen.
+# Der Server liefert nur statische Dateien aus. Das Formular geht an eine
+# Supabase Edge Function — bewusst dort, weil Supabase-Secrets nicht
+# zurückgelesen werden können, die Hostinger-API Umgebungsvariablen aber
+# im Klartext herausgibt.
 
 services:
   web:
@@ -30,35 +30,5 @@ services:
       - "traefik.http.routers.agentdoc.rule=${SITE_RULE}"
       - "traefik.http.routers.agentdoc.entrypoints=websecure"
       - "traefik.http.routers.agentdoc.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.agentdoc.priority=10"
       - "traefik.http.services.agentdoc.loadbalancer.server.port=8080"
 
-  api:
-    image: node:22-alpine
-    restart: unless-stopped
-    environment:
-      GHL_WEBHOOK_URL: "${GHL_WEBHOOK_URL}"
-      PORT: "8090"
-    entrypoint:
-      - sh
-      - -lc
-      - |
-        set -e
-        apk add --no-cache git >/dev/null
-        rm -rf /srv/app
-        git clone --depth 1 https://github.com/MaddowV/agent-doc-ai.git /srv/app
-        exec node /srv/app/deploy/anfrage-server.js
-    expose:
-      - "8090"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.agentdocapi.rule=(${SITE_RULE}) && PathPrefix(`/api/`)"
-      - "traefik.http.routers.agentdocapi.entrypoints=websecure"
-      - "traefik.http.routers.agentdocapi.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.agentdocapi.priority=20"
-      - "traefik.http.routers.agentdocapi.middlewares=agentdoc-limit"
-      - "traefik.http.services.agentdocapi.loadbalancer.server.port=8090"
-      # Zweite Bremse vor der im Dienst selbst — fängt Lastspitzen schon an der Tür ab.
-      - "traefik.http.middlewares.agentdoc-limit.ratelimit.average=10"
-      - "traefik.http.middlewares.agentdoc-limit.ratelimit.burst=5"
-      - "traefik.http.middlewares.agentdoc-limit.ratelimit.period=1m"

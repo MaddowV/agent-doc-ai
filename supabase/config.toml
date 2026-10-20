@@ -1,0 +1,6 @@
+project_id = "fyuyuqlsjmpyoszhligp"
+
+[functions.anfrage]
+# Öffentliches Formular: kein JWT nötig. Missbrauch wird über Spam-Falle,
+# Drosselung und Herkunftsprüfung in der Function selbst abgefangen.
+verify_jwt = false
