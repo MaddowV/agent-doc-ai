@@ -18,12 +18,17 @@ const API_KEY = Deno.env.get("GHL_API_KEY");
 const LOCATION_ID = Deno.env.get("GHL_LOCATION_ID");
 
 const GHL = "https://services.leadconnectorhq.com";
-const FELD_BESTAETIGT_AM = "FAHODIkWrbpD3ZJbTGd8";
-const FELD_NACHWEIS = "LGacuD1fGRAE83zE6Cbr";
 
-const TAG_ANFRAGE = "Demo angefragt";
-const TAG_DOI_OFFEN = "DOI ausstehend";
-const TAG_WERBUNG_OK = "Werbung erlaubt";
+// Custom Fields statt Tags — Tags wuchern, Felder bleiben überschaubar.
+// Angesprochen wird über die ID, nicht über den Schlüssel: GoHighLevel
+// verstümmelt Umlaute darin (aus „angestoßen" wird „angestoen").
+//
+// Gesetzt wird hier nur, was die Website weiß. Die beiden Datumsfelder
+// befüllt GoHighLevel selbst, sobald das jeweilige Häkchen gesetzt bzw.
+// der Bestätigungslink geklickt wurde.
+const FELD_DEMO_ANGEFRAGT = "t5OGtZ5zabdp1Rc6aUce";   // Checkbox
+const FELD_DOI_ANGESTOSSEN = "IIVDbdITRA0mCdoOvGPT";  // Checkbox
+const FELD_DOI_BESTAETIGT = "Xpmtz9Gqeix2XVAeOanW";   // Text mit Datum, von GHL gesetzt
 
 const ERLAUBTE_HERKUNFT = [
   "https://agentdocai.com",
@@ -112,11 +117,10 @@ async function kontaktSuchen(email: string) {
   return (voll.daten.contact ?? kurz) as Record<string, unknown>;
 }
 
+/** Eingewilligt hat, wer ein Bestätigungsdatum stehen hat. */
 function hatEinwilligung(kontakt: Record<string, unknown>): boolean {
-  const tags = (kontakt.tags as string[] ?? []).map((t) => t.toLowerCase());
-  if (tags.includes(TAG_WERBUNG_OK.toLowerCase())) return true;
   const felder = (kontakt.customFields as Array<Record<string, unknown>> ?? []);
-  return felder.some((f) => f.id === FELD_BESTAETIGT_AM && String(f.value ?? "").trim() !== "");
+  return felder.some((f) => f.id === FELD_DOI_BESTAETIGT && String(f.value ?? "").trim() !== "");
 }
 
 Deno.serve(async (req) => {
@@ -163,20 +167,21 @@ Deno.serve(async (req) => {
 
     // Das Double-Opt-In nur anstoßen, wenn jemand Werbung will und noch nicht
     // zugestimmt hat. Wer schon bestätigt hat, bekommt keine zweite Mail.
-    const tags = [TAG_ANFRAGE];
-    if (willWerbung && !schonEingewilligt) tags.push(TAG_DOI_OFFEN);
+    const felder: Array<{ id: string; value: unknown }> = [
+      { id: FELD_DEMO_ANGEFRAGT, value: ["Ja"] },
+    ];
+    if (willWerbung && !schonEingewilligt) {
+      felder.push({ id: FELD_DOI_ANGESTOSSEN, value: ["Ja"] });
+    }
 
-    // ACHTUNG, gemessen: `upsert` ERSETZT die Tagliste, es ergänzt sie nicht.
-    // Würde man die Tags hier mitschicken, verlöre ein bestehender Kontakt bei
-    // jeder Folgeanfrage seine Einwilligung — also genau den Nachweis, den wir
-    // aufbewahren müssen. Deshalb gehen Tags nur über den eigenen Endpunkt,
-    // und nur bei einem wirklich neuen Kontakt direkt mit.
+    // Anders als die Tagliste werden Custom Fields zusammengeführt, nicht
+    // ersetzt — nachgemessen. Bestehende Werte bleiben also stehen.
     const rumpf: Record<string, unknown> = {
       locationId: LOCATION_ID,
       email,
       source: "agentdocai.com — Demo-Report angefragt",
+      customFields: felder,
     };
-    if (!vorhanden) rumpf.tags = tags;
     const name = kuerzen(daten.name);
     if (name) {
       const teile = name.split(/\s+/);
@@ -199,19 +204,6 @@ Deno.serve(async (req) => {
 
     const kontakt = (r.daten.contact ?? r.daten) as Record<string, unknown>;
     const id = String(kontakt.id ?? "");
-
-    // Bei einem bestehenden Kontakt die Tags einzeln ergänzen, damit nichts
-    // Vorhandenes überschrieben wird.
-    if (id && vorhanden) {
-      const schonDa = ((vorhanden.tags as string[]) ?? []).map((t) => t.toLowerCase());
-      const fehlende = tags.filter((t) => !schonDa.includes(t.toLowerCase()));
-      if (fehlende.length) {
-        await ghl(`/contacts/${id}/tags`, {
-          method: "POST",
-          body: JSON.stringify({ tags: fehlende }),
-        });
-      }
-    }
 
     if (id && notiz) {
       await ghl(`/contacts/${id}/notes`, {
