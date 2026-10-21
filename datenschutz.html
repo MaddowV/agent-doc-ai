@@ -54,9 +54,12 @@
       nicht zu Google Fonts.
     </p>
     <p>
-      Deshalb erscheint auf dieser Website auch kein Einwilligungsbanner: Eine Einwilligung
-      nach § 25 Abs. 1 TDDDG ist nur erforderlich, wenn Informationen auf Ihrem Endgerät
-      gespeichert oder ausgelesen werden. Das geschieht hier nicht.
+      Deshalb erscheint auf dieser Website auch kein Einwilligungsbanner. Eine Einwilligung
+      nach § 25 Abs. 1 TDDDG ist erforderlich, wenn Informationen auf Ihrem Endgerät
+      gespeichert oder ausgelesen werden. Wir setzen weder Cookies noch vergleichbare Techniken
+      zu Analyse- oder Werbezwecken ein. Technisch notwendige Vorgänge — etwa dass Ihr Browser
+      Schriften und Stylesheets zwischenspeichert, damit die Seite beim nächsten Aufruf schneller
+      lädt — sind nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei.
     </p>
 
     <h2>3. Aufruf der Website (Server-Logfiles)</h2>
@@ -65,11 +68,15 @@
       technisch nötig sind, um Ihnen die Seite anzuzeigen und den Betrieb abzusichern:
     </p>
     <ul>
-      <li>aufgerufene Adresse und Datum sowie Uhrzeit des Zugriffs</li>
-      <li>übertragene Datenmenge und Meldung über den Erfolg des Abrufs</li>
-      <li>Browsertyp und Browserversion, verwendetes Betriebssystem</li>
-      <li>IP-Adresse</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>die angeforderte Adresse und die verwendete Methode</li>
+      <li>den Statuscode der Antwort</li>
+      <li>die übertragene Datenmenge</li>
     </ul>
+    <p>
+      Weitere Angaben — insbesondere <strong>IP-Adresse, Browserkennung und Herkunftsseite</strong>
+      — werden nicht in das Protokoll aufgenommen.
+    </p>
     <h3>Zweck und Rechtsgrundlage</h3>
     <p>
       Auslieferung der Website sowie Stabilität und Sicherheit des Betriebs. Rechtsgrundlage
@@ -77,27 +84,48 @@
       <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>. Eine Zusammenführung dieser Daten mit
       anderen Datenquellen findet nicht statt.
     </p>
-    <h3>Speicherdauer — wir protokollieren keine IP-Adressen</h3>
+    <h3>Was mit Ihrer IP-Adresse geschieht</h3>
     <p>
       Ihre IP-Adresse ist technisch nötig, damit der Server Ihnen die Seite überhaupt schicken
-      kann; sie wird dabei flüchtig verarbeitet. <strong>Gespeichert wird sie nicht.</strong>
-      Unser Webserver ist so eingestellt, dass das Zugriffsprotokoll weder IP-Adresse noch
-      Browserkennung noch Herkunftsseite enthält — protokolliert werden ausschließlich
-      Zeitpunkt, angeforderte Adresse, Statuscode und Datenmenge. Der vorgeschaltete
-      Reverse-Proxy führt kein Zugriffsprotokoll.
+      kann; sie wird dabei flüchtig verarbeitet. Unser Webserver ist so konfiguriert, dass das
+      Zugriffsprotokoll weder IP-Adresse noch Browserkennung noch Herkunftsseite enthält; der
+      vorgeschaltete Reverse-Proxy führt gar kein Zugriffsprotokoll. Zu statistischen Zwecken
+      oder zur Bildung von Profilen verwenden wir IP-Adressen nicht.
     </p>
-
-    <h2>4. Hosting</h2>
     <p>
-      Diese Website läuft auf einem virtuellen Server der
-      <strong>Hostinger International Ltd.</strong>, Jonavos g. 60C, 44192 Kaunas, Litauen.
-      Der Server steht im Rechenzentrum <strong>Frankfurt am Main, Deutschland</strong>.
-      Hostinger verarbeitet die oben genannten Daten ausschließlich in unserem Auftrag;
-      wir haben dazu einen Vertrag über die Auftragsverarbeitung nach
-      <strong>Art. 28 DSGVO</strong> geschlossen.
+      Anders beim <strong>Absenden des Formulars</strong>: Dort verarbeiten wir Ihre IP-Adresse
+      kurzzeitig, um Missbrauch zu begrenzen — Einzelheiten im nächsten Abschnitt.
     </p>
 
-    <h2>5. Kontaktformular „Demo-Report anfordern"</h2>
+    <h2>4. Missbrauchsschutz beim Formular</h2>
+    <p>
+      Um automatisierte Massenzusendungen zu verhindern, begrenzen wir die Zahl der Absendungen
+      je IP-Adresse. Dazu wird Ihre IP-Adresse beim Absenden für <strong>höchstens zehn
+      Minuten</strong> im Arbeitsspeicher der Verarbeitungsfunktion vorgehalten und danach
+      verworfen; sie wird weder dauerhaft gespeichert noch Ihrer Anfrage zugeordnet. Zusätzlich
+      enthält das Formular ein für Menschen unsichtbares Feld, das nur automatisierte Programme
+      ausfüllen. Unser Dienstleister protokolliert den Aufruf der Verarbeitungsfunktion mit
+      technischen Angaben einschließlich Ihrer IP-Adresse für einen begrenzten Zeitraum.
+      Rechtsgrundlage ist unser berechtigtes Interesse an der Abwehr von Missbrauch,
+      <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>.
+    </p>
+
+    <h2>5. Hosting</h2>
+    <p>
+      <!-- ZU KLÄREN: Firmierung und Anschrift exakt aus dem eigenen Hosting-Vertrag
+           übernehmen. Hostinger nennt in der eigenen Datenschutzerklärung mehrere
+           Gesellschaften (u. a. HOSTINGER, UAB in Vilnius und eine zypriotische
+           Hostinger International Ltd). Die bisher hier genannte Kombination aus
+           Firmierung und Adresse war falsch und wurde entfernt. -->
+      Diese Website läuft auf einem virtuellen Server unseres Hosting-Anbieters
+      <strong>Hostinger</strong>. Der Server steht in einem Rechenzentrum in
+      <strong>Frankfurt am Main, Deutschland</strong>. Der Anbieter verarbeitet die beim
+      Aufruf der Website anfallenden Daten ausschließlich in unserem Auftrag; wir haben dazu
+      einen Vertrag über die Auftragsverarbeitung nach <strong>Art. 28 DSGVO</strong>
+      geschlossen.
+    </p>
+
+    <h2>6. Kontaktformular „Demo-Report anfordern"</h2>
     <p>
       Wenn Sie das Formular absenden, verarbeiten wir die von Ihnen eingegebenen Angaben:
       Name, E-Mail-Adresse, Website, Größe Ihrer E-Mail-Liste, Ihre Beschreibung von Methode
@@ -105,10 +133,12 @@
     </p>
     <h3>Zweck und Rechtsgrundlage</h3>
     <p>
-      Wir nutzen diese Angaben ausschließlich, um Ihre Anfrage zu beantworten und Ihnen auf
-      Wunsch einen Beispiel-Report zu erstellen. Rechtsgrundlage ist
-      <strong>Art. 6 Abs. 1 lit. b DSGVO</strong> (vorvertragliche Maßnahmen auf Ihre Anfrage
-      hin), im Übrigen unser berechtigtes Interesse an der Beantwortung von Anfragen nach
+      Wir nutzen diese Angaben, um Ihre Anfrage zu beantworten und Ihnen auf Wunsch einen
+      Beispiel-Report zu erstellen. Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>
+      (Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage hin), wenn Sie die Anfrage für
+      sich selbst stellen. Stellen Sie sie als Ansprechpartnerin oder Ansprechpartner eines
+      Unternehmens, ist Rechtsgrundlage unser berechtigtes Interesse an der Beantwortung
+      geschäftlicher Anfragen und der Anbahnung von Geschäftsbeziehungen,
       <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>.
     </p>
     <h3>Pflichtangaben</h3>
@@ -142,44 +172,87 @@
       Diese Angaben dienen ausschließlich dem Nachweis, werden nicht ausgewertet und
       gelöscht, sobald keine Nachweispflicht mehr besteht.
     </p>
-    <h3>Empfänger und Übermittlung in die USA</h3>
+    <h3>Empfänger</h3>
     <p>
-      <!-- ZU PRÜFEN vor dem Livegang: exakte Firmierung und Anschrift aus dem
-           abgeschlossenen Auftragsverarbeitungsvertrag übernehmen, nicht aus dem Web.
-           Außerdem die DPF-Zertifizierung auf dataprivacyframework.gov verifizieren. -->
-      Ihre Anfrage wird von einer Verarbeitungsfunktion bei <strong>Supabase</strong>
-      (Speicher- und Ausführungsort Irland) entgegengenommen und unmittelbar an unser
-      Kundenverwaltungssystem <strong>GoHighLevel</strong> (HighLevel Inc., USA)
-      weitergereicht. Bei Supabase wird die Anfrage nicht gespeichert. Dort bearbeiten wir Anfragen, ordnen sie zu und halten den Verlauf
-      unserer Korrespondenz fest. Eine Kopie bei uns behalten wir nicht — die Daten liegen
-      an genau einer Stelle.
+      <!-- ZU KLÄREN vor dem Livegang: (1) Mit welcher Supabase-Gesellschaft besteht der
+           Vertrag? Die aktuelle Auftragsverarbeitungs-Vereinbarung nennt Supabase Pte. Ltd.
+           in Singapur; ältere Fassungen nannten Supabase, Inc. (USA). Maßgeblich ist die
+           Fassung, der zugestimmt wurde. (2) Exakte Firmierung des CRM-Anbieters aus dem
+           eigenen Vertrag. (3) Eintrag im Data Privacy Framework auf dataprivacyframework.gov
+           bestätigen (Status „Active", Kategorie Non-HR). -->
+      Ihre Formulareingaben werden von einer Verarbeitungsfunktion beim Anbieter
+      <strong>Supabase</strong> entgegengenommen, geprüft und unmittelbar an unser
+      Kundenverwaltungssystem <strong>GoHighLevel</strong> weitergereicht. Die Funktion wird
+      fest in der Region <strong>Irland</strong> ausgeführt; eine dauerhafte Speicherung Ihrer
+      Eingaben findet bei Supabase nicht statt. Supabase protokolliert jedoch den Aufruf der
+      Funktion mit technischen Angaben einschließlich Ihrer IP-Adresse.
     </p>
     <p>
-      Damit werden Ihre Daten in die <strong>USA</strong> übermittelt, also in ein Land
-      außerhalb der EU. Grundlage dafür ist der Angemessenheitsbeschluss der Europäischen
-      Kommission zum <strong>EU-US Data Privacy Framework</strong>
-      (Durchführungsbeschluss (EU) 2023/1795 vom 10. Juli 2023), soweit der Anbieter dort
-      zertifiziert ist, andernfalls die <strong>EU-Standardvertragsklauseln</strong> nach
-      Art. 46 Abs. 2 lit. c DSGVO. Eine Kopie der Standardvertragsklauseln erhalten Sie auf
-      Anfrage unter <a href="mailto:hallo@agentdocai.com">hallo@agentdocai.com</a>.
-      Zusätzlich besteht ein Vertrag über die Auftragsverarbeitung nach Art. 28 DSGVO.
+      Im Kundenverwaltungssystem bearbeiten wir Ihre Anfrage, ordnen sie zu und halten den
+      Verlauf unserer Korrespondenz fest. Von dort geht auch unsere E-Mail-Korrespondenz an Sie
+      raus. Mit beiden Anbietern bestehen Verträge über die Auftragsverarbeitung nach
+      <strong>Art. 28 DSGVO</strong>.
     </p>
-    <h3>Speicherdauer</h3>
     <p>
-      Wir löschen Ihre Anfrage, sobald sie abschließend bearbeitet ist und keine gesetzlichen
-      Aufbewahrungspflichten entgegenstehen, spätestens aber nach <strong>zwölf Monaten</strong>.
-      Entsteht aus Ihrer Anfrage ein Vertrag, gelten die handels- und steuerrechtlichen
-      Aufbewahrungsfristen.
+      Für die Erstellung des Demo-Reports arbeiten wir mit Ihren Angaben auch außerhalb des
+      Kundenverwaltungssystems, etwa in einem Dokument auf einem von uns betriebenen Gerät.
+      Diese Arbeitskopien löschen wir, sobald der Report versandt ist.
     </p>
 
-    <h2>6. Verschlüsselung</h2>
+    <h3>Übermittlung in Drittländer</h3>
+    <p>
+      Beide Anbieter haben ihren Sitz außerhalb der Europäischen Union, und beide greifen aus
+      Drittländern auf die Daten zu. Damit werden Ihre Daten in Drittländer übermittelt:
+    </p>
+    <ul>
+      <li>
+        <strong>Supabase</strong> — Übermittlung nach <strong>Singapur</strong> und in die
+        <strong>USA</strong>. Für Singapur besteht kein Angemessenheitsbeschluss der
+        Europäischen Kommission. Grundlage sind deshalb die
+        <strong>EU-Standardvertragsklauseln</strong> nach Art. 46 Abs. 2 lit. c DSGVO
+        (Durchführungsbeschluss (EU) 2021/914, Modul 2). Sie sind Bestandteil der öffentlich
+        abrufbaren Auftragsverarbeitungs-Vereinbarung des Anbieters; eine Kopie erhalten Sie
+        auf Anfrage unter <a href="mailto:hallo@agentdocai.com">hallo@agentdocai.com</a>.
+      </li>
+      <li>
+        <strong>GoHighLevel</strong> — Übermittlung in die <strong>USA</strong>. Der Anbieter
+        ist nach dem <strong>EU-US Data Privacy Framework</strong> zertifiziert; Grundlage ist
+        damit der Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023
+        (Durchführungsbeschluss (EU) 2023/1795). Den Eintrag können Sie unter
+        <a href="https://www.dataprivacyframework.gov" rel="noopener">dataprivacyframework.gov</a>
+        einsehen.
+      </li>
+    </ul>
+    <p>
+      In beiden Fällen besteht trotz dieser Garantien das allgemeine Risiko, dass Behörden im
+      jeweiligen Drittland auf die Daten zugreifen und Ihnen dagegen nicht dieselben Rechtsmittel
+      zur Verfügung stehen wie innerhalb der EU.
+    </p>
+
+    <h3>Speicherdauer</h3>
+    <ul>
+      <li><strong>Anfragedaten</strong> (Website, Listengröße, Freitext, Notizen): Wir löschen
+        sie, sobald die Anfrage abschließend bearbeitet ist, spätestens zwölf Monate nach dem
+        letzten Kontakt.</li>
+      <li><strong>Kontaktdaten mit Werbeeinwilligung</strong> (Name, E-Mail-Adresse): bis zum
+        Widerruf der Einwilligung.</li>
+      <li><strong>Nachweis der Einwilligung</strong> (Zeitpunkt der Anfrage, Zeitpunkt der
+        Bestätigung, Wortlaut der Einwilligungserklärung): bis zu drei Jahre nach dem Ende der
+        Einwilligung, damit wir sie innerhalb der Regelverjährung belegen können
+        (§§ 195, 199 BGB).</li>
+      <li><strong>Vertragsdaten</strong>, wenn aus Ihrer Anfrage ein Vertrag entsteht: nach den
+        handels- und steuerrechtlichen Aufbewahrungsfristen von sechs bzw. zehn Jahren
+        (§ 257 HGB, § 147 AO).</li>
+    </ul>
+
+    <h2>7. Verschlüsselung</h2>
     <p>
       Diese Website nutzt durchgehend eine TLS-Verschlüsselung. Sie erkennen das an der
       Adresse „https://" und am Schloss-Symbol in Ihrem Browser. Daten, die Sie an uns
       übermitteln, können dadurch nicht ohne Weiteres von Dritten mitgelesen werden.
     </p>
 
-    <h2>7. Ihre Rechte</h2>
+    <h2>8. Ihre Rechte</h2>
     <p>Ihnen stehen gegenüber uns die folgenden Rechte zu:</p>
     <ul>
       <li><strong>Auskunft</strong> über die zu Ihnen gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -188,14 +261,18 @@
       <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
       <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
       <li><strong>Widerspruch</strong> gegen Verarbeitungen, die wir auf ein berechtigtes
-          Interesse stützen (Art. 21 DSGVO)</li>
+          Interesse stützen (Art. 21 Abs. 1 DSGVO)</li>
+      <li><strong>Widerspruch gegen Direktwerbung</strong> (Art. 21 Abs. 2 DSGVO) — dafür
+          brauchen Sie keinen Grund zu nennen</li>
+      <li><strong>Widerruf einer Einwilligung</strong> mit Wirkung für die Zukunft
+          (Art. 7 Abs. 3 DSGVO)</li>
     </ul>
     <p>
       Eine formlose Nachricht an <a href="mailto:hallo@agentdocai.com">hallo@agentdocai.com</a>
-      genügt. Die Ausübung dieser Rechte ist für Sie kostenlos.
+      genügt. Die Ausübung dieser Rechte ist für Sie in der Regel kostenlos.
     </p>
 
-    <h2>8. Beschwerderecht bei der Aufsichtsbehörde</h2>
+    <h2>9. Beschwerderecht bei der Aufsichtsbehörde</h2>
     <p>
       Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren
       (Art. 77 DSGVO). Für uns zuständig ist der
@@ -204,14 +281,20 @@
       Sie können sich auch an die Aufsichtsbehörde Ihres Wohnsitzes wenden.
     </p>
 
-    <h2>9. Änderungen dieser Erklärung</h2>
+    <h2>10. Keine automatisierte Entscheidungsfindung</h2>
+    <p>
+      Den Demo-Report erstellen wir von Hand. Eine automatisierte Entscheidungsfindung
+      einschließlich Profilbildung im Sinne des Art. 22 DSGVO findet nicht statt.
+    </p>
+
+    <h2>11. Änderungen dieser Erklärung</h2>
     <p>
       Wir passen diese Erklärung an, sobald sich die Verarbeitung ändert — etwa weil ein
       neuer Dienst hinzukommt. Es gilt jeweils die hier veröffentlichte Fassung.
     </p>
 
     <p class="doc__meta">
-      Stand: 20. Oktober 2026 · <a href="impressum.html">Impressum</a>
+      Stand: 21. Oktober 2026 · <a href="impressum.html">Impressum</a>
     </p>
 
   </div>

@@ -367,7 +367,10 @@
         </div>
         <div class="form__row">
           <label for="f-thema">Deine Methode oder dein Thema</label>
-          <textarea id="f-thema" name="thema" placeholder="Zwei, drei Sätze reichen."></textarea>
+          <textarea id="f-thema" name="thema" placeholder="Zwei, drei Sätze reichen."
+                    aria-describedby="f-thema-hinweis"></textarea>
+          <p class="form__hint" id="f-thema-hinweis">Bitte nur zu deinem eigenen Angebot —
+            keine Angaben über einzelne Klientinnen oder Klienten.</p>
         </div>
         <label class="form__check">
           <input type="checkbox" name="verkauft" value="ja">
@@ -375,9 +378,13 @@
         </label>
         <label class="form__check">
           <input type="checkbox" name="werbung" value="ja">
-          <span>Ihr dürft mir gelegentlich Hinweise zu Agent Doc AI schicken.
+          <span>Marvin Voigt (Agent Doc AI) darf mir <strong>per E-Mail</strong> Werbung zu
+            Agent Doc AI schicken — Produktneuheiten, Anwendungsbeispiele und Angebote,
+            in der Regel nicht häufiger als monatlich.
             <span class="form__hint">Freiwillig und jederzeit widerrufbar. Ohne Haken bekommst
-            du ausschließlich die Antwort auf diese Anfrage — am Absenden ändert sich nichts.</span>
+            du ausschließlich die Antwort auf diese Anfrage — am Absenden ändert sich nichts.
+            Den Nachweis deiner Einwilligung bewahren wir auch nach einem Widerruf noch auf,
+            weil wir sie belegen können müssen.</span>
           </span>
         </label>
         <div class="form__trap" aria-hidden="true">
@@ -389,8 +396,9 @@
         <p class="form__note">
           <abbr title="Pflichtfeld">*</abbr> Pflichtfeld — alles andere ist freiwillig und hilft
           uns nur, den Demo-Report näher an dein Thema zu bauen. Wir melden uns innerhalb von
-          zwei Werktagen, nutzen deine Angaben ausschließlich zur Beantwortung dieser Anfrage
-          und tragen dich in keinen Verteiler ein. Einzelheiten in der
+          zwei Werktagen. <strong>Ohne das Häkchen oben</strong> nutzen wir deine Angaben
+          ausschließlich zur Beantwortung dieser Anfrage und tragen dich in keinen Verteiler
+          ein. Einzelheiten in der
           <a href="datenschutz.html">Datenschutzerklärung</a>.
         </p>
       </form>
@@ -416,7 +424,7 @@
   </div>
 </footer>
 
-<script src="app.js?v=fa04a117" defer></script>
+<script src="app.js?v=3d04bc13" defer></script>
 
 </body>
 </html>

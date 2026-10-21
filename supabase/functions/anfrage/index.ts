@@ -29,6 +29,12 @@ const GHL = "https://services.leadconnectorhq.com";
 const FELD_DEMO_ANGEFRAGT = "t5OGtZ5zabdp1Rc6aUce";   // Checkbox
 const FELD_DOI_ANGESTOSSEN = "IIVDbdITRA0mCdoOvGPT";  // Checkbox
 const FELD_DOI_BESTAETIGT = "Xpmtz9Gqeix2XVAeOanW";   // Text mit Datum, von GHL gesetzt
+const FELD_WIDERRUF = "04dBYNsaftXXiAIzmXZU";         // Text mit Datum, von GHL gesetzt
+
+// Eine Einwilligung, die lange nicht genutzt wurde, trägt irgendwann nicht mehr:
+// Betroffene müssen nicht mehr damit rechnen. Die Aufsicht empfiehlt, sie nach
+// etwa zwei Jahren zu erneuern, Gerichte waren teils strenger.
+const EINWILLIGUNG_GILT_MONATE = 24;
 
 const ERLAUBTE_HERKUNFT = [
   "https://agentdocai.com",
@@ -117,10 +123,40 @@ async function kontaktSuchen(email: string) {
   return (voll.daten.contact ?? kurz) as Record<string, unknown>;
 }
 
-/** Eingewilligt hat, wer ein Bestätigungsdatum stehen hat. */
-function hatEinwilligung(kontakt: Record<string, unknown>): boolean {
+function feldWert(kontakt: Record<string, unknown>, id: string): string {
   const felder = (kontakt.customFields as Array<Record<string, unknown>> ?? []);
-  return felder.some((f) => f.id === FELD_DOI_BESTAETIGT && String(f.value ?? "").trim() !== "");
+  const treffer = felder.find((f) => f.id === id);
+  return String(treffer?.value ?? "").trim();
+}
+
+function alsDatum(wert: string): Date | null {
+  if (!wert) return null;
+  const d = new Date(wert);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+/**
+ * Gilt die Werbe-Einwilligung noch?
+ *
+ * Ein Bestätigungsdatum allein genügt nicht. Wer widerrufen hat, hat keine
+ * Einwilligung mehr — das Bestätigungsdatum bleibt aber stehen. Würde man nur
+ * darauf schauen, würde ein Widerrufender bei der nächsten Anfrage still
+ * wieder als eingewilligt geführt. Das ist die schlechteste denkbare
+ * Konstellation: Werbung an jemanden, der ausdrücklich widersprochen hat.
+ *
+ * Und eine Einwilligung, die lange nicht genutzt wurde, trägt irgendwann
+ * nicht mehr — dann lieber neu einholen als sich darauf berufen.
+ */
+function einwilligungGiltNoch(kontakt: Record<string, unknown>): boolean {
+  const bestaetigt = alsDatum(feldWert(kontakt, FELD_DOI_BESTAETIGT));
+  if (!bestaetigt) return false;
+
+  const widerrufen = alsDatum(feldWert(kontakt, FELD_WIDERRUF));
+  if (widerrufen && widerrufen >= bestaetigt) return false;
+
+  const grenze = new Date();
+  grenze.setMonth(grenze.getMonth() - EINWILLIGUNG_GILT_MONATE);
+  return bestaetigt >= grenze;
 }
 
 Deno.serve(async (req) => {
@@ -163,7 +199,7 @@ Deno.serve(async (req) => {
 
   try {
     const vorhanden = await kontaktSuchen(email);
-    const schonEingewilligt = vorhanden ? hatEinwilligung(vorhanden) : false;
+    const schonEingewilligt = vorhanden ? einwilligungGiltNoch(vorhanden) : false;
 
     // Das Double-Opt-In nur anstoßen, wenn jemand Werbung will und noch nicht
     // zugestimmt hat. Wer schon bestätigt hat, bekommt keine zweite Mail.

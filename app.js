@@ -184,7 +184,11 @@
 
   // Annahmestelle: Supabase Edge Function in Irland. Sie prüft, drosselt und
   // legt den Kontakt im CRM an — gespeichert wird hier nichts.
-  var ANNAHME = "https://fyuyuqlsjmpyoszhligp.supabase.co/functions/v1/anfrage";
+  // forceFunctionRegion nagelt die Ausführung auf Irland fest. Ohne das läuft
+  // eine Edge Function in der Region, die dem Aufrufer am nächsten liegt —
+  // bei einem Aufruf von außerhalb der EU also außerhalb der EU.
+  var ANNAHME = "https://fyuyuqlsjmpyoszhligp.supabase.co/functions/v1/anfrage"
+              + "?forceFunctionRegion=eu-west-1";
 
   var form    = document.getElementById("demo-form");
   var fehler  = document.getElementById("form-err");
