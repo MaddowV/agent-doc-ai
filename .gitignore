@@ -1,0 +1,9 @@
+.DS_Store
+
+# Mail-Vorlagen und Signatur bleiben lokal: Sobald sie in GoHighLevel
+# eingefügt sind, ist GoHighLevel die maßgebliche Fassung. Eine Kopie hier
+# würde still veralten, und niemand wüsste mehr, welche gilt.
+emails/
+
+# Temporäre Dateien der Supabase-CLI
+supabase/.temp/
