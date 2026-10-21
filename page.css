@@ -157,3 +157,26 @@ body[data-sent="true"] .sent { display: block; }
 
 .form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form button[disabled] { opacity: .6; cursor: progress; }
+
+/* ---------- Kundenstimme ---------- */
+.stimme { margin: 2.6rem 0 0; max-width: 40rem; }
+.stimme__bild {
+  width: 5.5rem; height: 5.5rem; border-radius: 50%;
+  object-fit: cover; object-position: 50% 22%;
+  display: block; background: var(--paper-sunk);
+}
+.stimme__wer { margin: 1rem 0 0; font-size: var(--text-small); }
+.stimme__wer a {
+  font-family: var(--serif); font-size: 1.22rem; color: var(--ink);
+  text-decoration: none; border-bottom: 1px solid var(--rule);
+  transition: border-color .2s var(--ease);
+}
+.stimme__wer a:hover, .stimme__wer a:focus-visible { border-color: var(--accent); color: var(--accent); }
+.stimme__wer span { display: block; margin-top: .25rem; color: var(--ink-faint); }
+.stimme__zitat {
+  margin: 1.4rem 0 0; padding: 0 0 0 1.2rem;
+  border-left: 2px solid var(--accent);
+  font-family: var(--serif); font-size: clamp(1.15rem, 1rem + 0.7vw, 1.45rem);
+  line-height: 1.45; color: var(--ink);
+}
+.stimme__zitat p { margin: 0; }
